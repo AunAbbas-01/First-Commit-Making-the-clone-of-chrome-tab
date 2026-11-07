@@ -4,159 +4,189 @@
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
+/* FIX: page ab poori screen height leta hai (pehle main-div 900px fixed tha,
+   bari screen par neeche khali patti aati thi) */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+
+/* ================= HEADER ================= */
+
 header {
     height: 70px;
+    box-sizing: border-box;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
     background-color: #363840ff;
     border-bottom: 1px solid #8180808f;
     border-top-right-radius: 10px;
     border-top-left-radius: 10px;
 }
 
-#arrows {
-    color: #8180808F;
-    font-size: 13px;
-    margin: 0 10px;
-    padding-top: 15px;
+/* FIX: sab toolbar buttons ka size ek jaisa (32px circle), icon bilkul center mein.
+   Pehle har icon par alag margin-top / padding-top ke hacks the,
+   is wajah se arrows, reload aur home upar neeche the. */
+.arrows,
+#reload,
+#home,
+.three-dots,
+.google-account,
+.tab-group {
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    cursor: default; /* Chrome ke toolbar par arrow cursor hota hai, hand nahi */
+    transition: background-color 0.2s ease;
+}
+
+/* FIX: hover ek hi jagah, transition ke saath (reload/home/dots/avatar/tab-group) */
+#reload:hover,
+#home:hover,
+.three-dots:hover,
+.google-account:hover,
+.tab-group:hover {
+    background-color: #6363638f;
 }
 
 .header-first-line {
+    height: 40px;
+    padding: 0 8px;
+    box-sizing: border-box;
     display: flex;
-    justify-content: center;
+    align-items: center;
+    gap: 4px;
+}
+
+.arrows {
+    color: #8180808F;
+    font-size: 13px;
+    cursor: default; /* disabled arrows: hover nahi hota */
 }
 
 #reload {
     color: #E6E6E6;
     font-size: 13px;
-    border: 1px solid transparent;
-    margin-top: 5px;
-    padding: 8px;
-    border-radius: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
-
-/*#reload:hover {
-    background-color: #c9c9c9;
-}*/
 
 #home {
     color: #E6E6E6;
     font-size: 15px;
-    margin-top: 5px;
-    padding: 8px;
-    border-radius: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-right: 10px;
-    margin-left: 3px;
-}
-
-#home:hover, #reload:hover {
-    background-color: #6363638f;
-}
-
-#google-search-icon {
-    position: absolute;
-    top: 9.5px;
-    left: 7.5px;
-    margin: 0;
-    color: #E6E6E6;
-    background-color: rgb(61, 61, 77);
-    height: 25px;
-    width: 25px;
-    border-radius: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 .full-search-bar {
     position: relative;
     flex: 1;
     min-width: 0;
-    overflow: hidden;
-    padding-top: 5px;
     display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-left: 4px;
+    /* FIX: overflow:hidden hata diya, warna focus ring kat jata tha */
 }
 
+#google-search-icon {
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    margin: 0;
+    color: #E6E6E6;
+    background-color: rgb(61, 61, 77);
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* FIX: input ab flex:1 hai (pehle width:95% tha), avatar aur dots hamesha
+   right side par sahi jagah rehte hain */
 .search-bar {
-    background-color: #22242A;
-    border-radius: 50px;
-    width: 95%;
-    border: none;
+    flex: 1;
+    min-width: 0;
+    box-sizing: border-box;
     height: 35px;
+    padding: 0 16px 0 42px;
+    background-color: #22242A;
+    border: none;
+    border-radius: 50px;
     outline: none;
-    text-indent: 40px;
     color: white;
-    transition: background-color 0.2s ease-in 0s;
     font-size: 15px;
+    transition: background-color 0.2s ease-in 0s, box-shadow 0.2s ease-in 0s;
+}
+
+.search-bar::placeholder {
+    color: #9AA0A6;
+}
+
+/* FIX: type="search" ka default X button chrome omnibox mein nahi hota */
+.search-bar::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+    appearance: none;
+    display: none;
 }
 
 .search-bar:hover {
     background-color: #6363638f;
     color: #E6E6E6;
 }
-.google-account img {
-    height: 21px;
-    width: 21px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 12px;
-    margin: 8px 14px;
-    background-color: transparent;
-    border-radius: 50px;
-    
+
+/* FIX: click karne par omnibox ki neeli border (focus effect) */
+.search-bar:focus {
+    background-color: #22242A;
+    box-shadow: inset 0 0 0 2px #8AB4F8;
 }
 
-.google-account:hover {
-    background-color: #6363638f;
-    border-radius: 50px;
+.google-account img {
+    width: 21px;
+    height: 21px;
+    display: block;
+    object-fit: cover;
+    border-radius: 50%;
 }
+
 .three-dots {
     color: #E6E6E6;
     font-size: 13px;
-    padding: 0px 10px;
-    border-radius: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
-.three-dots:hover {
-    background-color: #6363638f;
-}
+
+/* ---- bookmarks row ---- */
 
 .header-second-line {
+    flex: 1;
     display: flex;
     align-items: center;
-}
-.tab-group {
-    color: #E6E6E6;
-    font-size: 15px;
-    margin: 8px 0 0 10px;
-    border-radius: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-between; /* FIX: position:absolute hata kar yahan se right align */
+    padding: 0 6px 0 10px;
 }
 
-.tab-group:hover {
-    background-color: #6363638f;
-    border-radius: 50px;
+.tab-group {
+    width: 28px;
+    height: 28px;
+    color: #E6E6E6;
+    font-size: 15px;
 }
 
 .all-bookmarks {
+    display: flex;
+    align-items: center;
+    gap: 6px; /* FIX: folder icon aur text ke beech gap */
     color: #E6E6E6;
-    position: absolute;
     font-size: 0.85rem;
-    right: 15px;
-    margin-top: 5px;
-    padding-left: 20px;
+    padding: 5px 10px;
     cursor: default;
     border-radius: 50px;
-    padding: 5px;
+    transition: background-color 0.2s ease;
 }
 
 .all-bookmarks:hover {
@@ -164,15 +194,27 @@ header {
 }
 
 
-/* main sectin */
+/* ================= MAIN SECTION ================= */
 
-
-.top-main-row {
+.main-div {
+    position: relative; /* top-main-row ab isi ke andar position hoti hai */
+    flex: 1;
     display: flex;
+    flex-direction: column;
+    align-items: safe center;
+    background-color: #363840ff;
+    z-index: 1;
+}
+
+/* FIX: pehle ye page ke hisaab se absolute thi (top:90px) aur icons par
+   translateY hacks the. Ab main-div ke andar hai aur sab align-items:center se
+   ek line mein aate hain. */
+.top-main-row {
     position: absolute;
-    right: 10px;
-    top: 90px;
-    height: 50px;
+    top: 12px;
+    right: 12px;
+    display: flex;
+    align-items: center;
     gap: 17px;
 }
 
@@ -188,44 +230,36 @@ header {
 }
 
 .grid-in-top-main-row {
-    height: 30px;
-    width: 30px;
+    box-sizing: border-box;
+    width: 40px;
+    height: 40px;
+    padding: 8px;
     cursor: pointer;
     filter: invert(1);
-    position: relative;
-    transform: translateY(-16px);
-    scale: 0.8;
-    padding: 8px;
-    border-radius: 50px;
-    transition: background-color 0.2s ease-in-out 0s, background-color 0.2s ease-in-out 0s;
+    border-radius: 50%;
+    transition: background-color 0.2s ease-in-out;
 }
 
+/* FIX: filter:invert(1) background ko bhi ulta kar deta hai, is liye hover ka
+   rang halka dikhta tha. Yahan pehle se ulta rang diya hai (#9c9c9c = #636363 ka invert),
+   taake screen par bilkul #6363638f jaisa dikhe. */
 .grid-in-top-main-row:hover {
-    background-color: #6363638f;
+    background-color: #9c9c9c8f;
 }
 
+/* FIX: photo ke upar background hover nazar hi nahi aata tha, ab ring effect hai */
 .account-icon-in-top-main-row {
-    height: 40px;
-    width: 40px;
+    width: 32px;
+    height: 32px;
+    margin: 4px;
+    object-fit: cover;
     cursor: pointer;
-    position: relative;
-    transform: translateY(-10px);
-    border-radius: 50px;
-    transition: background-color 0.2s ease-in-out 0s, background-color 0.2s ease-in-out 0s;
+    border-radius: 50%;
+    transition: box-shadow 0.2s ease-in-out;
 }
 
 .account-icon-in-top-main-row:hover {
-    background-color: #6363638f;
-}
-.main-div {
-    height: 900px;
-    display: flex;
-    box-sizing: border-box;
-    flex-direction: column;
-    align-items: safe center;
-    background-color: #363840ff;
-    min-width: fit-content;
-    z-index: 1;
+    box-shadow: 0 0 0 4px #6363638f;
 }
 
 .google-logo-in-main {
@@ -242,89 +276,105 @@ header {
 }
 
 
+/* ---- main search box ---- */
+
+/* FIX: andar ke icons ab flex + align-items:center se barabar center hote hain.
+   Pehle transform:scale(0.7) aur margin-left:-10px ke hacks se spacing bigad rahi thi. */
 .search-inner-div {
     width: 770px;
+    max-width: calc(100% - 40px);
     height: 60px;
+    box-sizing: border-box;
+    padding: 0 8px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
     background-color: white;
-    display: flex;
     border-radius: 50px;
-    margin-bottom:20px;
+    margin-bottom: 20px;
+    transition: box-shadow 0.2s ease-in-out;
 }
 
-.add-icon-in-main-search {
-    display: flex;
-    background-color: none;
-    color: black;
-    position: relative;
-    transform: scale(0.7);
-    cursor: pointer;
-    padding: 12px;
+/* FIX: hover / focus par search box ka shadow effect */
+.search-inner-div:hover {
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
 }
 
-.add-icon-in-main-search:hover {
-    background-color: #E6E6E6;
-    border-radius: 50px;
+.search-inner-div:focus-within {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.55);
 }
 
-.textarea-in-main-search {
-    width: 65%;
-    border: none;
-    outline: none;
-    margin-top: 20px;
-    font-size: 17px;
-}
-
-.mic-icon-in-main-search {
-    display: flex;
-    background-color: none;
-    color: black;
-    position: relative;
-    transform: scale(0.7);
-    cursor: pointer;
-    padding: 15px;
-}
-.mic-icon-in-main-search:hover {
-    background-color: #E6E6E6;
-    border-radius: 50px;
-}
-
-
+.add-icon-in-main-search,
+.mic-icon-in-main-search,
 .camera-icon-in-main-search {
-    display: flex;
-    background-color: none;
-    color: black;
-    position: relative;
-    transform: scale(0.7);
+    box-sizing: border-box;
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    display: block;
+    padding: 8px;
+    object-fit: contain;
+    border-radius: 50%;
     cursor: pointer;
-    padding: 12px;
-    margin-left: -10px;
+    transition: background-color 0.2s ease-in-out;
 }
+
+.add-icon-in-main-search:hover,
+.mic-icon-in-main-search:hover,
 .camera-icon-in-main-search:hover {
     background-color: #E6E6E6;
-    border-radius: 50px;
+}
+
+/* FIX: resize handle (neeche right corner ka chhota triangle) hata diya,
+   text ab vertically center hai */
+.textarea-in-main-search {
+    flex: 1;
+    min-width: 0;
+    height: 24px;
+    padding: 0 8px;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: #1f1f1f;
+    font-size: 17px;
+    line-height: 24px;
+    resize: none;
+    overflow-y: auto;
+    scrollbar-width: none;
 }
 
 .ai-mode-button {
-    width: 90px;
+    box-sizing: border-box;
     height: 45px;
-    border-radius: 50px;
-    background-color: #E6E6E6;
-    margin-top: 8px;
+    padding: 0 16px;
+    flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 6px;
+    border-radius: 50px;
+    background-color: #E6E6E6;
     cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.ai-mode-button:hover {
+    background-color: #d6d6d6;
 }
 
 .ai-mode-span {
     font-size: 13px;
     font-weight: 500;
+    white-space: nowrap;
 }
 
 .search-icon-in-ai-button {
-    transform: scale(0.80);
+    width: 20px;
+    height: 20px;
 }
 
+
+/* ---- two buttons under the search box ---- */
 
 .buttons-under-main-search {
     display: flex;
@@ -332,28 +382,28 @@ header {
     flex-wrap: wrap;
     gap: 15px;
     width: 496px;
+    max-width: 100%;
     margin-bottom: 50px;
 }
 
-
-
+/* FIX: icon aur text ab align-items:center se center hote hain
+   (pehle margin-top:8px aur top:4px ke hacks the) */
 .button-under-search-bar {
     height: 56px;
-    min-height: 56px;
-    max-height: 56px;
     width: 240px;
     background-color: #22242A;
     border-radius: 15px;
     border: none;
     outline: none;
     display: flex;
+    align-items: center;
     padding: 8px 14px;
     font-family: inherit;
     gap: 12px;
     isolation: isolate;
     cursor: pointer;
     overflow: hidden;
-
+    transition: background-color 0.2s ease-in-out;
 }
 
 .button-under-search-bar:hover {
@@ -361,47 +411,68 @@ header {
 }
 
 .image-in-first-button {
-    margin-top: 8px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
 }
 
+.image-in-first-button img {
+    width: 24px;
+    height: 24px;
+}
+
+/* FIX: yahan flex-direction: flex-start likha tha jo galat/invalid value hai,
+   uski jagah align-items:flex-start */
 .span-tags-in-buttons {
     display: flex;
     flex-direction: column;
-    flex-direction: flex-start;
-    position: relative;
-    top: 4px;
+    align-items: flex-start;
 }
 
 .first-span-in-button {
     color: #DADBD5;
     font-weight: 500;
     height: 20px;
+    line-height: 20px;
     width: 180px;
     font-size: 0.80rem;
     text-align: start;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .sec-span-in-button {
     color: #C2C3CC;
     height: 18px;
+    line-height: 18px;
     width: 180px;
     font-size: 0.75rem;
     text-align: start;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 
+/* ---- shortcuts ---- */
+
 .shortcuts-in-main {
+    box-sizing: border-box;
     height: 120px;
     width: 1130px;
+    max-width: 100%;
     display: flex;
     flex-wrap: wrap;
+    align-content: flex-start;
     overflow: hidden;
     justify-content: center;
     padding: 2px;
 }
 
-
 .anchor-tags-of-buttons {
+    position: relative;
+    flex-shrink: 0;
     height: 112px;
     width: 112px;
     color: #E6E6E6;
@@ -414,30 +485,50 @@ header {
     font-size: 0.75rem;
     gap: 15px;
     overflow: hidden;
+    transition: background-color 0.2s ease-in-out;
 }
 
-.anchor-tags-of-buttons:hover {
-    background-image: url("icon_more_vert.svg");
-    background-repeat: no-repeat;
-    background-position: top right;
+/* FIX: hover par teen dots (more_vert) ab top-right mein sahi jagah, safed rang mein
+   aur fade-in ke saath aate hain. Pehle background-image seedha tile ke kone se chipka
+   hota tha aur do alag :hover rules the. */
+.anchor-tags-of-buttons::after {
+    content: "";
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    width: 28px;
+    height: 28px;
+    background: url("icon_more_vert.svg") center / 20px no-repeat;
+    filter: brightness(0) invert(0.9); /* icon ka rang kuch bhi ho, safed ban jata hai */
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
 }
+
 .anchor-tags-of-buttons:hover {
     background-color: #6363638f;
 }
 
+.anchor-tags-of-buttons:hover::after {
+    opacity: 1;
+}
 
+/* FIX: images ab hamesha 30x30 ke square mein (object-fit) taake alag aspect ratio
+   wale logos par circle ovel na ho jaye */
 .images-in-a-buttons {
+    width: 30px;
     height: 30px;
-    background-color: #22242A;
-    border-radius: 50px;
+    flex-shrink: 0;
     padding: 10px;
+    object-fit: contain;
+    background-color: #22242A;
+    border-radius: 50%;
     color: white;
 }
 
 .plus-icon-of-add-shortcut {
     font-size: 30px;
-    height: 30px;
-    width: 30px;
+    line-height: 1; /* FIX: plus ki sign circle ke bilkul center mein */
     display: flex;
     align-items: center;
     justify-content: center;
