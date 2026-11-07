@@ -1,0 +1,444 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+header {
+    height: 70px;
+    background-color: #363840ff;
+    border-bottom: 1px solid #8180808f;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+}
+
+#arrows {
+    color: #8180808F;
+    font-size: 13px;
+    margin: 0 10px;
+    padding-top: 15px;
+}
+
+.header-first-line {
+    display: flex;
+    justify-content: center;
+}
+
+#reload {
+    color: #E6E6E6;
+    font-size: 13px;
+    border: 1px solid transparent;
+    margin-top: 5px;
+    padding: 8px;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/*#reload:hover {
+    background-color: #c9c9c9;
+}*/
+
+#home {
+    color: #E6E6E6;
+    font-size: 15px;
+    margin-top: 5px;
+    padding: 8px;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+    margin-left: 3px;
+}
+
+#home:hover, #reload:hover {
+    background-color: #6363638f;
+}
+
+#google-search-icon {
+    position: absolute;
+    top: 9.5px;
+    left: 7.5px;
+    margin: 0;
+    color: #E6E6E6;
+    background-color: rgb(61, 61, 77);
+    height: 25px;
+    width: 25px;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.full-search-bar {
+    position: relative;
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    padding-top: 5px;
+    display: flex;
+}
+
+.search-bar {
+    background-color: #22242A;
+    border-radius: 50px;
+    width: 95%;
+    border: none;
+    height: 35px;
+    outline: none;
+    text-indent: 40px;
+    color: white;
+    transition: background-color 0.2s ease-in 0s;
+    font-size: 15px;
+}
+
+.search-bar:hover {
+    background-color: #6363638f;
+    color: #E6E6E6;
+}
+.google-account img {
+    height: 21px;
+    width: 21px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    margin: 8px 14px;
+    background-color: transparent;
+    border-radius: 50px;
+    
+}
+
+.google-account:hover {
+    background-color: #6363638f;
+    border-radius: 50px;
+}
+.three-dots {
+    color: #E6E6E6;
+    font-size: 13px;
+    padding: 0px 10px;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.three-dots:hover {
+    background-color: #6363638f;
+}
+
+.header-second-line {
+    display: flex;
+    align-items: center;
+}
+.tab-group {
+    color: #E6E6E6;
+    font-size: 15px;
+    margin: 8px 0 0 10px;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tab-group:hover {
+    background-color: #6363638f;
+    border-radius: 50px;
+}
+
+.all-bookmarks {
+    color: #E6E6E6;
+    position: absolute;
+    font-size: 0.85rem;
+    right: 15px;
+    margin-top: 5px;
+    padding-left: 20px;
+    cursor: default;
+    border-radius: 50px;
+    padding: 5px;
+}
+
+.all-bookmarks:hover {
+    background-color: #6363638f;
+}
+
+
+/* main sectin */
+
+
+.top-main-row {
+    display: flex;
+    position: absolute;
+    right: 10px;
+    top: 90px;
+    height: 50px;
+    gap: 17px;
+}
+
+.top-main-row-anchor-tag {
+    text-decoration: none;
+    color: #E6E6E6;
+    font-size: 0.85rem;
+    font-weight: 400;
+}
+
+.top-main-row-anchor-tag:hover {
+    text-decoration: underline;
+}
+
+.grid-in-top-main-row {
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+    filter: invert(1);
+    position: relative;
+    transform: translateY(-16px);
+    scale: 0.8;
+    padding: 8px;
+    border-radius: 50px;
+    transition: background-color 0.2s ease-in-out 0s, background-color 0.2s ease-in-out 0s;
+}
+
+.grid-in-top-main-row:hover {
+    background-color: #6363638f;
+}
+
+.account-icon-in-top-main-row {
+    height: 40px;
+    width: 40px;
+    cursor: pointer;
+    position: relative;
+    transform: translateY(-10px);
+    border-radius: 50px;
+    transition: background-color 0.2s ease-in-out 0s, background-color 0.2s ease-in-out 0s;
+}
+
+.account-icon-in-top-main-row:hover {
+    background-color: #6363638f;
+}
+.main-div {
+    height: 900px;
+    display: flex;
+    box-sizing: border-box;
+    flex-direction: column;
+    align-items: safe center;
+    background-color: #363840ff;
+    min-width: fit-content;
+    z-index: 1;
+}
+
+.google-logo-in-main {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    justify-content: flex-end;
+    margin-top: 100px;
+    margin-bottom: 40px;
+}
+
+.google-logo-in-main img {
+    height: 80px;
+}
+
+
+.search-inner-div {
+    width: 770px;
+    height: 60px;
+    background-color: white;
+    display: flex;
+    border-radius: 50px;
+    margin-bottom:20px;
+}
+
+.add-icon-in-main-search {
+    display: flex;
+    background-color: none;
+    color: black;
+    position: relative;
+    transform: scale(0.7);
+    cursor: pointer;
+    padding: 12px;
+}
+
+.add-icon-in-main-search:hover {
+    background-color: #E6E6E6;
+    border-radius: 50px;
+}
+
+.textarea-in-main-search {
+    width: 65%;
+    border: none;
+    outline: none;
+    margin-top: 20px;
+    font-size: 17px;
+}
+
+.mic-icon-in-main-search {
+    display: flex;
+    background-color: none;
+    color: black;
+    position: relative;
+    transform: scale(0.7);
+    cursor: pointer;
+    padding: 15px;
+}
+.mic-icon-in-main-search:hover {
+    background-color: #E6E6E6;
+    border-radius: 50px;
+}
+
+
+.camera-icon-in-main-search {
+    display: flex;
+    background-color: none;
+    color: black;
+    position: relative;
+    transform: scale(0.7);
+    cursor: pointer;
+    padding: 12px;
+    margin-left: -10px;
+}
+.camera-icon-in-main-search:hover {
+    background-color: #E6E6E6;
+    border-radius: 50px;
+}
+
+.ai-mode-button {
+    width: 90px;
+    height: 45px;
+    border-radius: 50px;
+    background-color: #E6E6E6;
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.ai-mode-span {
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.search-icon-in-ai-button {
+    transform: scale(0.80);
+}
+
+
+.buttons-under-main-search {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    width: 496px;
+    margin-bottom: 50px;
+}
+
+
+
+.button-under-search-bar {
+    height: 56px;
+    min-height: 56px;
+    max-height: 56px;
+    width: 240px;
+    background-color: #22242A;
+    border-radius: 15px;
+    border: none;
+    outline: none;
+    display: flex;
+    padding: 8px 14px;
+    font-family: inherit;
+    gap: 12px;
+    isolation: isolate;
+    cursor: pointer;
+    overflow: hidden;
+
+}
+
+.button-under-search-bar:hover {
+    background-color: #6363638f;
+}
+
+.image-in-first-button {
+    margin-top: 8px;
+}
+
+.span-tags-in-buttons {
+    display: flex;
+    flex-direction: column;
+    flex-direction: flex-start;
+    position: relative;
+    top: 4px;
+}
+
+.first-span-in-button {
+    color: #DADBD5;
+    font-weight: 500;
+    height: 20px;
+    width: 180px;
+    font-size: 0.80rem;
+    text-align: start;
+}
+
+.sec-span-in-button {
+    color: #C2C3CC;
+    height: 18px;
+    width: 180px;
+    font-size: 0.75rem;
+    text-align: start;
+}
+
+
+.shortcuts-in-main {
+    height: 120px;
+    width: 1130px;
+    display: flex;
+    flex-wrap: wrap;
+    overflow: hidden;
+    justify-content: center;
+    padding: 2px;
+}
+
+
+.anchor-tags-of-buttons {
+    height: 112px;
+    width: 112px;
+    color: #E6E6E6;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    font-size: 0.75rem;
+    gap: 15px;
+    overflow: hidden;
+}
+
+.anchor-tags-of-buttons:hover {
+    background-image: url("icon_more_vert.svg");
+    background-repeat: no-repeat;
+    background-position: top right;
+}
+.anchor-tags-of-buttons:hover {
+    background-color: #6363638f;
+}
+
+
+.images-in-a-buttons {
+    height: 30px;
+    background-color: #22242A;
+    border-radius: 50px;
+    padding: 10px;
+    color: white;
+}
+
+.plus-icon-of-add-shortcut {
+    font-size: 30px;
+    height: 30px;
+    width: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
